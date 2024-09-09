@@ -1,0 +1,16 @@
+using DataFrames, XLSX, DelimitedFiles
+using Plots, Tables
+
+file_dir = "/Volumes/yoonD/Project_HeatRelated/Data/vital_sign/vital_sign.xlsx"
+
+xf = XLSX.readxlsx(file_dir)
+sheetnames = XLSX.sheetnames(xf)
+
+df = DataFrame(XLSX.readtable(file_dir,"uq_vsd_case01_trenddata"))
+
+t = df.Time
+hr = df.HR
+P = df.Pulse
+RR = df.RR
+BP = df[:,12]
+plot!(t,BP)
